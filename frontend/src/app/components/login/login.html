@@ -1,0 +1,22 @@
+<div class="login-wrapper">
+  <div class="login-card">
+    <h2>Inventario CCL</h2>
+    <p class="subtitle">Ingresa tus credenciales para continuar</p>
+
+    <div class="form-group">
+      <label>Usuario</label>
+      <input [(ngModel)]="usuario" placeholder="Ej: admin" type="text" />
+    </div>
+
+    <div class="form-group">
+      <label>Contraseña</label>
+      <input [(ngModel)]="password" placeholder="••••••••" type="password" (keyup.enter)="login()" />
+    </div>
+
+    <p class="error" *ngIf="error">{{ error }}</p>
+
+    <button class="btn-login" (click)="login()" [disabled]="cargando">
+      {{ cargando ? 'Ingresando...' : 'Ingresar' }}
+    </button>
+  </div>
+</div>

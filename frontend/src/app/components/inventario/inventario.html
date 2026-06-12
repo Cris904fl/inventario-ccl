@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="header">
+    <h2>Inventario CCL</h2>
+    <div class="actions">
+      <button class="btn-primary" (click)="irAMovimientos()">+ Registrar Movimiento</button>
+      <button class="btn-danger" (click)="logout()">Cerrar Sesión</button>
+    </div>
+  </div>
+
+  <div class="search-bar">
+    <input [(ngModel)]="busqueda" placeholder="🔍 Buscar producto..." type="text" />
+  </div>
+
+  <div class="card">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Producto</th>
+          <th>Cantidad</th>
+          <th>Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of productosFiltrados()">
+          <td>{{ p.id }}</td>
+          <td>{{ p.nombre }}</td>
+          <td>{{ p.cantidad }}</td>
+          <td>
+            <span class="badge" [ngClass]="{
+              'badge-ok': p.cantidad > 20,
+              'badge-low': p.cantidad > 0 && p.cantidad <= 20,
+              'badge-empty': p.cantidad === 0
+            }">
+              {{ p.cantidad > 20 ? 'Disponible' : p.cantidad > 0 ? 'Stock bajo' : 'Agotado' }}
+            </span>
+          </td>
+        </tr>
+        <tr *ngIf="productosFiltrados().length === 0">
+          <td colspan="4" class="empty">No se encontraron productos</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

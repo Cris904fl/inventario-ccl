@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="header">
+    <button class="btn-back" (click)="volver()">← Volver</button>
+    <h2>Registrar Movimiento</h2>
+  </div>
+
+  <div class="card">
+    <div *ngIf="mensaje" class="alert alert-success">✅ {{ mensaje }}</div>
+    <div *ngIf="error" class="alert alert-error">❌ {{ error }}</div>
+
+    <div class="form-group">
+      <label>ID Producto</label>
+      <input [(ngModel)]="productoId" type="number" placeholder="Ej: 1" min="1" />
+    </div>
+
+    <div class="form-group">
+      <label>Tipo de Movimiento</label>
+      <div class="tipo-selector">
+        <button class="tipo-btn" [class.active-entrada]="tipo === 'entrada'" (click)="tipo = 'entrada'">
+          📥 Entrada
+        </button>
+        <button class="tipo-btn" [class.active-salida]="tipo === 'salida'" (click)="tipo = 'salida'">
+          📤 Salida
+        </button>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Cantidad</label>
+      <input [(ngModel)]="cantidad" type="number" placeholder="Ej: 10" min="1" />
+    </div>
+
+    <button class="btn-submit" (click)="registrar()">Registrar Movimiento</button>
+  </div>
+</div>
